@@ -204,6 +204,21 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="JalkahoitolaEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JalkahoitolaEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JalkahoitolaEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JalkahoitolaEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JalkahoitolaEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JalkahoitolaEntities.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Jalkahoitola.Context.cs">
@@ -244,6 +259,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="JalkahoitolaEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JalkahoitolaEntities.edmx</DependentUpon>
+      <LastGenOutput>JalkahoitolaEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="JalkahoitolaEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>JalkahoitolaEntities.edmx</DependentUpon>
+      <LastGenOutput>JalkahoitolaEntities.cs</LastGenOutput>
+    </Content>
     <Content Include="Models\Jalkahoitola.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Jalkahoitola.edmx</DependentUpon>
@@ -267,6 +292,13 @@
     </EntityDeploy>
     <Content Include="Models\Jalkahoitola.edmx.diagram">
       <DependentUpon>Jalkahoitola.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="JalkahoitolaEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>JalkahoitolaEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="JalkahoitolaEntities.edmx.diagram">
+      <DependentUpon>JalkahoitolaEntities.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
