@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="JalkahoitolaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityType Name="ProductGroups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="char" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nmae" Type="char" MaxLength="100" />
+          <Property Name="Description" Type="nchar" MaxLength="500" />
+          <Property Name="Quantity" Type="nchar" MaxLength="100" />
+          <Property Name="UnitOfMeasure" Type="char" MaxLength="20" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Recieved ammount">
+          <Key>
+            <PropertyRef Name="SaapumiseränId" />
+          </Key>
+          <Property Name="SaapumiseränId" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="ExpireDate" Type="date" />
+          <Property Name="Price" Type="nchar" MaxLength="100" />
+          <Property Name="VendorName" Type="char" MaxLength="510" />
+          <Property Name="LocationCode" Type="char" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Stock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="UnitStock" Type="nchar" MaxLength="10" />
+          <Property Name="LocationCode" Type="nchar" MaxLength="10" />
+          <Property Name="SaapumiseränId" Type="int" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Products_ProductGroups1">
+          <End Role="ProductGroups" Type="Self.ProductGroups" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGroups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recieved ammount_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="Recieved ammount" Type="Self.Recieved ammount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Recieved ammount">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Recieved ammount">
+          <End Role="Recieved ammount" Type="Self.Recieved ammount" Multiplicity="0..1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recieved ammount">
+              <PropertyRef Name="SaapumiseränId" />
+            </Principal>
+            <Dependent Role="Stock">
+              <PropertyRef Name="SaapumiseränId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JalkahoitolaModelStoreContainer">
+          <EntitySet Name="ProductGroups" EntityType="Self.ProductGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recieved ammount" EntityType="Self.Recieved ammount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Products_ProductGroups1" Association="Self.FK_Products_ProductGroups1">
+            <End Role="ProductGroups" EntitySet="ProductGroups" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recieved ammount_Products" Association="Self.FK_Recieved ammount_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Recieved ammount" EntitySet="Recieved ammount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Recieved ammount" Association="Self.FK_Stock_Recieved ammount">
+            <End Role="Recieved ammount" EntitySet="Recieved ammount" />
+            <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2006/04/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="JalkahoitolaEntities" Alias="Self">
+        <EntityContainer Name="JalkahoitolaEntitiesContainer"></EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS" Space="C-S">
+        <Alias Key="Model" Value="JalkahoitolaEntities" />
+        <Alias Key="Target" Value="JalkahoitolaEntities.Store" />
+        <EntityContainerMapping CdmEntityContainer="JalkahoitolaEntitiesContainer" StorageEntityContainer="JalkahoitolaEntitiesTargetContainer"></EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
