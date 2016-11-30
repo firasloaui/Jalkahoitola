@@ -17,6 +17,15 @@ namespace JalkaHoitola.Controllers
             entities.Dispose();
 
             return View(model);
-        }
+         }
+        //
+          public ActionResult Products()
+          {
+              JalkahoitolaEntities1 entities = new JalkahoitolaEntities1();
+              List<Products> model1 = entities.Products.ToList();
+              entities.Dispose();
+
+              return View(model1);
     }
+}
 }
